@@ -1,7 +1,6 @@
 float angle; 
 
 int size    = 10;
-int amount  = 10;
 color white = color (255, 255, 255);
 color black = color (0, 0, 0);
 color blue  = color (0, 105, 163);
@@ -75,6 +74,8 @@ void draw(){
 void mousePressed(){
     if(game_statue == 0){
         game_statue = checkMoveStatue(game_statue);
+    }else if(game_statue == 3 || game_statue == 4){
+        game_statue = 0;
     }
 }
 
@@ -201,6 +202,8 @@ void in_game(){
     //  衝突判定
     checkCollapsEnemy();
     checkCollapsFlag();
+
+    checkClear();
     
 }
 
@@ -297,6 +300,17 @@ void checkCollapsFlag(){
 }
 
 
+void checkClear(){
+    for(int i = 0; i < flagAmount; i++){
+        if(stats[i] == 0){
+            return;
+        }
+    }
+
+    game_statue = 3;
+}
+
+
 void how2play(){
     background(blue);
 }
@@ -304,16 +318,14 @@ void how2play(){
 
 void congrats(){
     background(green);
+    fill(black);
+    text("CONGRATSRATION!",width/2 ,height/2 );
+    
 }
 
 
 void gameOver(){
     background(red);
+    fill(black);
+    text("GAME OVER!",width/2 ,height/2 );
 }
-
-/*
-TODOs:
-全フラグが獲得されたときにCongratsの画面を表示
-プレイヤーの移動の実装
-ゲームオーバー画面の実装
-*/
