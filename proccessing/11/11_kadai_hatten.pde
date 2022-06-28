@@ -30,7 +30,7 @@ stats
 0: 白色，まだ取られていない
 1: 緑色，回収済み
 */
-int flagSpace     = 40;
+int flagSpace     = 120;
 int flagAmount;             
 int[] flagX, flagY, stats;
 
@@ -74,7 +74,7 @@ void draw(){
 void mousePressed(){
     if(game_statue == 0){
         game_statue = checkMoveStatue(game_statue);
-    }else if(game_statue == 3 || game_statue == 4){
+    }else if(game_statue == 2|| game_statue == 3 || game_statue == 4){
         game_statue = 0;
     }
 }
@@ -161,7 +161,7 @@ void setupEnemyPos(int n){
 
 int setupFlag(){
     int n = 0;
-    for(int i = 0; 30 + i*flagSpace < width - 30; i++)
+    for(int i = 0; 30 + i*flagSpace < width - 30; i++){
         for(int j = 0; 30 + j*flagSpace < height; j++){
             flagX[n]  = 30 + i*flagSpace;
             flagY[n]  = 30 + j*flagSpace;
@@ -169,7 +169,7 @@ int setupFlag(){
 
             n++ ;
         }
-
+    }
     return n;
 }
 
@@ -313,13 +313,15 @@ void checkClear(){
 
 void how2play(){
     background(blue);
+    fill(black);
+    text("There's no content.\nClick to Back",width/2 ,height/2 );
 }
 
 
 void congrats(){
     background(green);
     fill(black);
-    text("CONGRATSRATION!",width/2 ,height/2 );
+    text("CONGRATSRATION!\nClick to Back",width/2 ,height/2 );
     
 }
 
@@ -327,5 +329,5 @@ void congrats(){
 void gameOver(){
     background(red);
     fill(black);
-    text("GAME OVER!",width/2 ,height/2 );
+    text("GAME OVER!\nClick to Back",width/2 ,height/2 );
 }
